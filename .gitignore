@@ -6,3 +6,4 @@ storybook-static/
 
 .yarn/cache
 *storybook.log
+yarn.lock
