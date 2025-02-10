@@ -4,6 +4,11 @@ storybook-static/
 
 .idea
 
-.yarn/cache
+# Yarn Berry
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 *storybook.log
-yarn.lock
