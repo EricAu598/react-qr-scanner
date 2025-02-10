@@ -23,23 +23,11 @@ function Template(args: IScannerProps) {
     const devices = useDevices();
 
     function getTracker() {
-        switch (tracker) {
-            case 'outline':
-                return outline;
-            case 'boundingBox':
-                return boundingBox;
-            case 'centerText':
-                return centerText;
-            default:
-                return undefined;
-        }
+        return boundingBox;
     }
 
     return (
         <div style={styles.container}>
-            <button style={{ marginBottom: 5 }} onClick={() => setPause((val) => !val)}>
-                {pause ? 'Pause Off' : 'Pause On'}
-            </button>
             <div style={styles.controls}>
                 <select onChange={(e) => setDeviceId(e.target.value)}>
                     <option value={undefined}>Select a device</option>
@@ -48,12 +36,6 @@ function Template(args: IScannerProps) {
                             {device.label}
                         </option>
                     ))}
-                </select>
-                <select style={{ marginLeft: 5 }} onChange={(e) => setTracker(e.target.value)}>
-                    <option value="centerText">Center Text</option>
-                    <option value="outline">Outline</option>
-                    <option value="boundingBox">Bounding Box</option>
-                    <option value={undefined}>No Tracker</option>
                 </select>
             </div>
             <ScannerComp
@@ -91,16 +73,10 @@ function Template(args: IScannerProps) {
                     console.log(`onError: ${error}'`);
                 }}
                 components={{
-                    audio: true,
-                    onOff: true,
-                    torch: true,
-                    zoom: true,
-                    finder: true,
                     tracker: getTracker()
                 }}
                 allowMultiple={true}
                 scanDelay={2000}
-                paused={pause}
             />
         </div>
     );
